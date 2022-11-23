@@ -1,6 +1,28 @@
 import '../styles/App.scss';
+import { useState } from 'react';
+
 
 function App() {
+
+
+  const [numberOfErrors, setNumberOfErrors] = useState(0);
+  const [lastLetter, setLastLetter] = useState('');
+
+
+
+
+  const handleClick = () => {
+    setNumberOfErrors(numberOfErrors + 1);
+  }
+
+  const handleUserLetter = (ev) => {
+    let userValue = ev.target.value;
+    setLastLetter(userValue);
+    console.log(userValue);
+    // Repasar pork funciona sin usar lastLetter
+  }
+
+
   return (
     <div>
       <div className="page">
@@ -45,10 +67,13 @@ function App() {
                 type="text"
                 name="last-letter"
                 id="last-letter"
+                onChange={handleUserLetter}
+                value={lastLetter}
+
               />
             </form>
           </section>
-          <section className="dummy error-5">
+          <section className={`dummy error-${numberOfErrors}`}>
             <span className="error-13 eye"></span>
             <span className="error-12 eye"></span>
             <span className="error-11 line"></span>
@@ -63,6 +88,7 @@ function App() {
             <span className="error-2 line"></span>
             <span className="error-1 line"></span>
           </section>
+          <input value='incrementar' type='button' onClick={handleClick}></input>
         </main>
       </div>
     </div>
