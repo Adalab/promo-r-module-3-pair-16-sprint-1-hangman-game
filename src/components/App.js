@@ -1,27 +1,30 @@
 import '../styles/App.scss';
 import { useState } from 'react';
 
-
 function App() {
-
-
   const [numberOfErrors, setNumberOfErrors] = useState(0);
   const [lastLetter, setLastLetter] = useState('');
 
-
-
-
   const handleClick = () => {
     setNumberOfErrors(numberOfErrors + 1);
-  }
+  };
 
   const handleUserLetter = (ev) => {
-    let userValue = ev.target.value;
-    setLastLetter(userValue);
-    console.log(userValue);
-    // Repasar pork funciona sin usar lastLetter
-  }
+    let userLetter = ev.target.value;
 
+    //esto no funciona, seguir investigando
+    if (userLetter.match('/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]{1,50}$/')) {
+      setLastLetter(userLetter);
+    } else {
+      console.log('letra no válida');
+    }
+
+    // if ('/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]$/'.test(userLetter) === true) {
+    //   setLastLetter(userLetter);
+    // } else {
+    //   console.log('letra no válida');
+    // }
+  };
 
   return (
     <div>
@@ -61,6 +64,7 @@ function App() {
                 Escribe una letra:
               </label>
               <input
+                pattern="/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]{1,50}$/"
                 autoComplete="off"
                 className="form__input"
                 maxLength="1"
@@ -69,7 +73,6 @@ function App() {
                 id="last-letter"
                 onChange={handleUserLetter}
                 value={lastLetter}
-
               />
             </form>
           </section>
@@ -88,7 +91,11 @@ function App() {
             <span className="error-2 line"></span>
             <span className="error-1 line"></span>
           </section>
-          <input value='incrementar' type='button' onClick={handleClick}></input>
+          <input
+            value="incrementar"
+            type="button"
+            onClick={handleClick}
+          ></input>
         </main>
       </div>
     </div>
