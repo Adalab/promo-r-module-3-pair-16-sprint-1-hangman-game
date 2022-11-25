@@ -28,7 +28,7 @@ function App() {
 
   // renderFunctions
 
-  // ----------> nos hemos quedado aquí
+  // ----------> nos hemos quedado en la lección 4, ejercicio 2. Modificando un array del estado
 
   const renderSolutionLetters = () => {
     const wordLetters = word.split('');
@@ -36,7 +36,6 @@ function App() {
     return wordLetters.map((eachLetter) => {
       //nos falta el key
       return <li className="letter"></li>;
-      // ahora nos pinta Katacrocker en la solución
     });
   };
 
